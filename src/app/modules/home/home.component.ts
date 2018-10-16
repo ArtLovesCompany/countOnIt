@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+
+import { AppState } from '../store/app-state.interface';
+import { CREDIT, DEBIT, RESET, actionCreator } from '../store/reducer';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -7,11 +13,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  balance = 1880;
+  balance$: Observable<number>;
 
-  constructor() { }
+  constructor(private store: Store<AppState>) {
+    this.balance$ = this.store.pipe(
+      select(x => x.main.balance)
+    );
+  }
 
   ngOnInit() {
+    // this.store.subscribe(x => console.log(x));
   }
 
 }

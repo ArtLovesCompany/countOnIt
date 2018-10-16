@@ -1,9 +1,9 @@
-<div>
+<form (ngSubmit)="onSubmit(expenseForm)" #expenseForm="ngForm" form-group="expenseForm">
   <label>expense:
-    <input placeholder="expense">
+    <input name="expense" ngModel placeholder="expense">
   </label>
   <label>cost: $
-    <input placeholder="how much">
+    <input name="cost" ngModel placeholder="how much">
   </label>
   <label>type:
     <select>
@@ -15,5 +15,10 @@
       <option>hot food</option>
     </select>
   </label>
-  <button>submit</button>
-</div>
+  <button type="submit">submit</button>
+</form>
+
+<button (click)="credit()">credit $25</button>
+<button (click)="debit()">debit $25</button>
+
+<!-- <button (click)="reset()">Reset Counter</button> -->
